@@ -1,0 +1,7 @@
+logs/
+data/
+dw-data/
+input/
+postgres-data/
+.env
+__pycache__/
