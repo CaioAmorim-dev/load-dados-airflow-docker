@@ -1,0 +1,50 @@
+services:
+
+    #Serviço de banco de dados que será usado como Data Warehouse
+  dw-postgres:
+    image: postgres:15
+    container_name: dw-postgres
+    environment:
+      POSTGRES_USER: dw_user
+      POSTGRES_PASSWORD: dw_pass
+      POSTGRES_DB: dw_database
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./dw-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  #Serviço do Airflow Webserver (interface gráfica do Airflow)
+  airflow-webserver:
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./data:/data
+      - ./input:/opt/airflow/input
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False" #Comando que desativa DAGS exemplo no airflow (deixa o ambiente mais limpo)
+
+   #Serviço do Scheduler para  disparar as DAGs nos horários configurados
+  airflow-scheduler:
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./data:/data
+      - ./input:/opt/airflow/input
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False" #Comando que desativa DAGS exemplo no airflow (deixa o ambiente mais limpo)
+  #Serviço worker para executar pipelines
+  airflow-worker:
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./data:/data
+      - ./input:/opt/airflow/input
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+#Conexão com rede externa para ligação com DW e aiflow
+networks:
+  default:
+    external:
+      name: banvic_network
+
