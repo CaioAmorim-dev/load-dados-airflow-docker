@@ -27,10 +27,14 @@ banvic/
 
 ## Guia para rodar ***banvic_pipeline***
 
-***1. Baixe o arquivo "transacoes.cvs no link drive a seguir:***\
+***1. Baixe o arquivo "transacoes.cvs" e "banvic.sql"no link drive a seguir:***\
 https://drive.google.com/drive/folders/1mNR-rzSEBPp2_CLI4A0ew6NgGnNSGH76
 
-coloque esse arquivo em (banvic/input), criando a pasta input caso não exista.
+
+coloque o arquivo banvic.sql em (banvic-source)
+
+coloque o arquivo transacoes.csv em (banvic/input), criando a pasta input caso não exista.
+
 
 ***2. Verificar containers em execução antes de seguir:***\
 execute em cada pasta:
