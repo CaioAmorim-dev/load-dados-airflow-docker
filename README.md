@@ -1,6 +1,6 @@
-# Desafio Tecnico - LIGHT HOUSE
+# Desafio Tecnico - LIGHTHOUSE
 
-## 1Introdução
+## Introdução
 
 Este projeto consiste em um **pipeline de dados automatizado** para o Banco Vitória (BanVic), cujo objetivo é centralizar dados de diferentes fontes (CSV e SQL) em um **Data Warehouse PostgreSQL**, utilizando **Docker e Apache Airflow**, se tornando totalmente replicável.
 
